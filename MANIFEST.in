@@ -1,0 +1,6 @@
+recursive-include erpnext_xero_app *.json
+recursive-include erpnext_xero_app *.js
+recursive-include erpnext_xero_app *.py
+recursive-include erpnext_xero_app *.txt
+recursive-include erpnext_xero_app *.md
+

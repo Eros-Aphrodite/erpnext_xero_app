@@ -1,0 +1,76 @@
+{
+ "doctype": "DocType",
+ "name": "Xero Mapping",
+ "module": "Xero Integration",
+ "istable": 0,
+ "custom": 0,
+ "editable_grid": 0,
+ "allow_rename": 0,
+ "autoname": "",
+ "engine": "InnoDB",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "erpnext_name",
+ "fields": [
+  {
+   "fieldname": "section_main",
+   "fieldtype": "Section Break",
+   "label": "Mapping"
+  },
+  {
+   "fieldname": "erpnext_doctype",
+   "fieldtype": "Select",
+   "label": "ERPNext DocType",
+   "options": "Customer\nSales Invoice",
+   "reqd": 1
+  },
+  {
+   "fieldname": "erpnext_name",
+   "fieldtype": "Data",
+   "label": "ERPNext Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "xero_object",
+   "fieldtype": "Select",
+   "label": "Xero Object",
+   "options": "Contact\nInvoice",
+   "reqd": 1
+  },
+  {
+   "fieldname": "xero_id",
+   "fieldtype": "Data",
+   "label": "Xero ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_synced_at",
+   "fieldtype": "Datetime",
+   "label": "Last Synced At",
+   "read_only": 1
+  }
+ ],
+ "field_order": [
+  "section_main",
+  "erpnext_doctype",
+  "erpnext_name",
+  "xero_object",
+  "xero_id",
+  "last_synced_at"
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ]
+}
+

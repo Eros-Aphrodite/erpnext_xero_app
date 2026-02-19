@@ -1,0 +1,220 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "Xero Settings",
+ "creation": "2026-02-17 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_xero_api",
+  "client_id",
+  "client_secret",
+  "redirect_uri",
+  "scopes",
+  "column_tokens",
+  "access_token",
+  "refresh_token",
+  "tenant_id",
+  "token_expires_at",
+  "section_defaults",
+  "default_company",
+  "default_item",
+  "default_customer_group",
+  "default_territory",
+  "xero_sales_account_code",
+  "xero_tax_type",
+  "section_sync",
+  "sync_customers_to_xero",
+  "sync_customers_from_xero",
+  "sync_invoices_to_xero",
+  "sync_invoices_from_xero",
+  "last_customers_to_xero_sync_at",
+  "last_customers_from_xero_sync_at",
+  "last_invoices_to_xero_sync_at",
+  "last_invoices_from_xero_sync_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_xero_api",
+   "fieldtype": "Section Break",
+   "label": "Xero API Credentials"
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Password",
+   "label": "Client Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "redirect_uri",
+   "fieldtype": "Data",
+   "label": "Redirect URI",
+   "description": "Must match the Redirect URI configured in your Xero App."
+  },
+  {
+   "fieldname": "scopes",
+   "fieldtype": "Small Text",
+   "label": "Scopes",
+   "read_only": 1,
+   "default": "accounting.contacts\\naccounting.transactions\\noffline_access",
+   "description": "Scopes requested during OAuth. Usually you don’t need to change this."
+  },
+  {
+   "fieldname": "column_tokens",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "access_token",
+   "fieldtype": "Password",
+   "label": "Access Token",
+   "read_only": 1
+  },
+  {
+   "fieldname": "refresh_token",
+   "fieldtype": "Password",
+   "label": "Refresh Token",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tenant_id",
+   "fieldtype": "Data",
+   "label": "Tenant ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "token_expires_at",
+   "fieldtype": "Datetime",
+   "label": "Token Expires At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_defaults",
+   "fieldtype": "Section Break",
+   "label": "Defaults (for invoice sync)"
+  },
+  {
+   "fieldname": "default_company",
+   "fieldtype": "Link",
+   "label": "Default Company",
+   "options": "Company",
+   "description": "Required when creating Sales Invoices in ERPNext from Xero."
+  },
+  {
+   "fieldname": "default_item",
+   "fieldtype": "Link",
+   "label": "Default Item",
+   "options": "Item",
+   "description": "Used when importing Xero invoice line items into ERPNext."
+  },
+  {
+   "fieldname": "default_customer_group",
+   "fieldtype": "Link",
+   "label": "Default Customer Group",
+   "options": "Customer Group",
+   "description": "Used when creating Customers in ERPNext from Xero."
+  },
+  {
+   "fieldname": "default_territory",
+   "fieldtype": "Link",
+   "label": "Default Territory",
+   "options": "Territory",
+   "description": "Used when creating Customers in ERPNext from Xero."
+  },
+  {
+   "fieldname": "xero_sales_account_code",
+   "fieldtype": "Data",
+   "label": "Xero Sales Account Code",
+   "description": "AccountCode to use when sending Sales Invoices to Xero (e.g. 200)."
+  },
+  {
+   "fieldname": "xero_tax_type",
+   "fieldtype": "Data",
+   "label": "Xero Tax Type",
+   "description": "TaxType to use in Xero line items (e.g. OUTPUT, GST on Income)."
+  },
+  {
+   "fieldname": "section_sync",
+   "fieldtype": "Section Break",
+   "label": "Sync Options"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_customers_to_xero",
+   "fieldtype": "Check",
+   "label": "Sync Customers to Xero (ERPNext → Xero)"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_customers_from_xero",
+   "fieldtype": "Check",
+   "label": "Sync Customers from Xero (Xero → ERPNext)"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_invoices_to_xero",
+   "fieldtype": "Check",
+   "label": "Sync Invoices to Xero (ERPNext → Xero)"
+  },
+  {
+   "default": "0",
+   "fieldname": "sync_invoices_from_xero",
+   "fieldtype": "Check",
+   "label": "Sync Invoices from Xero (Xero → ERPNext)"
+  },
+  {
+   "fieldname": "last_customers_to_xero_sync_at",
+   "fieldtype": "Datetime",
+   "label": "Last Customers to Xero Sync At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_customers_from_xero_sync_at",
+   "fieldtype": "Datetime",
+   "label": "Last Customers from Xero Sync At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_invoices_to_xero_sync_at",
+   "fieldtype": "Datetime",
+   "label": "Last Invoices to Xero Sync At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_invoices_from_xero_sync_at",
+   "fieldtype": "Datetime",
+   "label": "Last Invoices from Xero Sync At",
+   "read_only": 1
+  }
+ ],
+ "is_single": 1,
+ "issingle": 1,
+ "modified": "2026-02-17 00:00:00.000000",
+ "module": "Xero Integration",
+ "name": "Xero Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "prevent_rename": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
+
