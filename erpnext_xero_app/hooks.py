@@ -7,6 +7,16 @@ app_description = "Configure and sync ERPNext customers & invoices with Xero."
 app_email = "you@example.com"
 app_license = "MIT"
 
+# Add app to apps screen
+add_to_apps_screen = [
+    {
+        "name": "erpnext_xero_app",
+        "logo": "/assets/erpnext_xero_app/images/xero-logo.svg",
+        "title": "Xero Integration",
+        "route": "/app/xero-integration",
+    }
+]
+
 scheduler_events = {
     # Safe entrypoint: checks flags in Xero Settings and enqueues jobs
     "hourly": ["erpnext_xero_app.xero_integration.sync.scheduled_sync"]
