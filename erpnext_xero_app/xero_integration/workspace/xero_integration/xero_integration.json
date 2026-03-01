@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"header_main\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\"><b>Xero Integration</b></span><br><span class=\\\"text-muted\\\">Sync ERPNext customers, invoices, and payments with Xero</span>\",\"col\":12}},{\"id\":\"spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"shortcut_settings\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Settings\",\"col\":4}},{\"id\":\"shortcut_mapping\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Mapping\",\"col\":4}},{\"id\":\"shortcut_log\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Sync Log\",\"col\":4}},{\"id\":\"spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"cards_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Modules</b></span>\",\"col\":12}},{\"id\":\"card_config\",\"type\":\"card\",\"data\":{\"card_name\":\"Configuration\",\"col\":4}},{\"id\":\"card_sync\",\"type\":\"card\",\"data\":{\"card_name\":\"Sync Management\",\"col\":4}},{\"id\":\"card_reports\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports & Logs\",\"col\":4}}]",
+ "content": "[{\"id\":\"header_main\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\"><b>Xero Integration</b></span><br><span class=\\\"text-muted\\\">Sync ERPNext customers, invoices, and payments with Xero</span>\",\"col\":12}},{\"id\":\"spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"shortcut_settings\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Settings\",\"col\":4}},{\"id\":\"shortcut_mapping\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Mapping\",\"col\":4}},{\"id\":\"shortcut_tracking\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Tracking Mapping\",\"col\":4}},{\"id\":\"shortcut_log\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Xero Sync Log\",\"col\":4}},{\"id\":\"spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"cards_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Modules</b></span>\",\"col\":12}},{\"id\":\"card_config\",\"type\":\"card\",\"data\":{\"card_name\":\"Configuration\",\"col\":4}},{\"id\":\"card_sync\",\"type\":\"card\",\"data\":{\"card_name\":\"Sync Management\",\"col\":4}},{\"id\":\"card_reports\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports & Logs\",\"col\":4}}]",
  "creation": "2026-02-20 00:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -16,7 +16,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Configuration",
-   "link_count": 1,
+   "link_count": 2,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -29,6 +29,17 @@
    "link_to": "Xero Settings",
    "link_type": "DocType",
    "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Xero Tracking Mapping",
+   "link_count": 0,
+   "link_to": "Xero Tracking Mapping",
+   "link_type": "DocType",
+   "onboard": 0,
    "type": "Link"
   },
   {
@@ -111,10 +122,17 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Xero Sync Log",
+  "label": "Xero Sync Log",
    "link_to": "Xero Sync Log",
    "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Xero Tracking Mapping",
+   "link_to": "Xero Tracking Mapping",
+   "type": "DocType"
   }
- ],
- "title": "Xero Integration"
+  ],
+  "title": "Xero Integration"
 }

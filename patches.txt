@@ -1,2 +1,8 @@
 [post_model_sync]
 erpnext_xero_app.patches.v1_0.add_xero_to_integrations_workspace
+erpnext_xero_app.patches.v1_0.add_xero_module_icon
+erpnext_xero_app.patches.v1_0.add_lead_custom_fields
+erpnext_xero_app.patches.v1_0.add_event_custom_fields
+erpnext_xero_app.patches.v1_0.create_lead_web_form
+erpnext_xero_app.patches.v1_0.create_lead_calendar_sync
+erpnext_xero_app.patches.v1_0.enhance_lead_calendar_sync

@@ -18,6 +18,16 @@ from frappe.utils import now_datetime
 from erpnext_xero_app.xero_integration.xero_client import XeroClient
 
 
+def _redirect_url(path: str) -> str:
+    """Build redirect URL. When behind proxy (e.g. ngrok), use request host without backend port."""
+    if getattr(frappe.local, "request", None) and getattr(frappe.local.request, "host", None):
+        host = frappe.local.request.host
+        if ":" not in host:
+            proto = "https" if frappe.get_request_header("X-Forwarded-Proto") == "https" else "http"
+            return f"{proto}://{host}{path}"
+    return frappe.utils.get_url(path)
+
+
 @frappe.whitelist(allow_guest=True)
 def xero_oauth_callback(code: str | None = None, state: str | None = None) -> str:
     """
@@ -28,6 +38,7 @@ def xero_oauth_callback(code: str | None = None, state: str | None = None) -> st
 
     After user authorizes in Xero, Xero redirects here with a `code`.
     We exchange that code for access/refresh tokens and store them.
+    Runs as Administrator so Guest (redirected from Xero) can complete the flow.
     """
     if not code:
         return """
@@ -41,6 +52,7 @@ def xero_oauth_callback(code: str | None = None, state: str | None = None) -> st
         """
 
     try:
+        frappe.set_user("Administrator")
         settings = frappe.get_single("Xero Settings")
 
         client_secret = settings.get_password("client_secret") or ""
@@ -77,18 +89,11 @@ def xero_oauth_callback(code: str | None = None, state: str | None = None) -> st
         if conns:
             settings.tenant_id = conns[0].get("tenantId")
 
-        settings.save()
+        settings.save(ignore_permissions=True)
         frappe.db.commit()
 
-        return """
-        <html>
-        <body>
-            <h2>Xero OAuth Success!</h2>
-            <p>Successfully connected to Xero. Tokens have been saved.</p>
-            <p><a href="/app/xero-settings">Go to Xero Settings</a></p>
-        </body>
-        </html>
-        """
+        frappe.local.response["type"] = "redirect"
+        frappe.local.response["location"] = _redirect_url("/app/xero-settings")
 
     except Exception as exc:
         frappe.log_error(

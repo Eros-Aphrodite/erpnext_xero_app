@@ -30,7 +30,12 @@ class XeroSyncLog(Document):
 
 
 def create_log(*, entity: str, direction: str) -> str:
-    doc = frappe.get_doc({"doctype": "Xero Sync Log", "entity": entity, "direction": direction})
+    doc = frappe.get_doc({
+        "doctype": "Xero Sync Log",
+        "entity": entity,
+        "direction": direction,
+        "status": "Queued",
+    })
     doc.insert(ignore_permissions=True)
     return doc.name
 

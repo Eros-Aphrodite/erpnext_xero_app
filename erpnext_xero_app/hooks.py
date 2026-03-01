@@ -8,10 +8,12 @@ app_email = "you@example.com"
 app_license = "MIT"
 
 # Add app to apps screen
+app_include_js = ["assets/erpnext_xero_app/js/sidebar_icon.js"]
+
 add_to_apps_screen = [
     {
         "name": "erpnext_xero_app",
-        "logo": "/assets/erpnext_xero_app/images/xero-logo.svg",
+        "logo": "/assets/erpnext_xero_app/images/xero-origin-icon.png",
         "title": "Xero Integration",
         "route": "/app/xero-integration",
     }

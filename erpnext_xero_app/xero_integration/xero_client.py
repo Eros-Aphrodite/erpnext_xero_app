@@ -86,8 +86,15 @@ class XeroClient:
         if not self.token_expires_at:
             return
 
+        # Normalize to datetime (may come from DB as string)
+        expires_at = self.token_expires_at
+        if not isinstance(expires_at, dt.datetime):
+            import frappe
+            expires_at = frappe.utils.get_datetime(expires_at)
+        self.token_expires_at = expires_at
+
         now = dt.datetime.utcnow()
-        if self.token_expires_at.tzinfo is not None:
+        if getattr(expires_at, "tzinfo", None) is not None:
             now = dt.datetime.now(dt.timezone.utc)
 
         if self.token_expires_at <= now + dt.timedelta(seconds=refresh_skew_seconds):
@@ -162,6 +169,13 @@ class XeroClient:
             where += f"&&UpdatedDateUTC>DateTime({since.strftime('%Y,%m,%d')})"
         data = self._get("Invoices", params={"where": where})
         return data.get("Invoices", [])
+
+    # ---------------- Tracking categories (for job/project in Xero) ----------------
+
+    def get_tracking_categories(self) -> List[Dict[str, Any]]:
+        """Return list of tracking categories with their options (for mapping job/cost code to Xero)."""
+        data = self._get("TrackingCategories")
+        return data.get("TrackingCategories", [])
 
     def upsert_invoice(self, invoice: Dict[str, Any]) -> Dict[str, Any]:
         payload = {"Invoices": [invoice]}

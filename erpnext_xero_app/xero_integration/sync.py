@@ -12,6 +12,9 @@ from erpnext_xero_app.xero_integration.doctype.xero_mapping.xero_mapping import 
     set_mapping,
 )
 from erpnext_xero_app.xero_integration.doctype.xero_sync_log.xero_sync_log import create_log
+from erpnext_xero_app.xero_integration.doctype.xero_tracking_mapping.xero_tracking_mapping import (
+    get_tracking_for_erpnext,
+)
 from erpnext_xero_app.xero_integration.xero_client import XeroClient
 
 
@@ -96,11 +99,32 @@ def _xero_contact_to_customer_values(settings, contact: Dict[str, Any]) -> Dict[
 
 
 @frappe.whitelist()
+def get_xero_tracking_categories() -> list:
+	"""Return list of tracking categories with options for use in Xero Tracking Mapping form."""
+	settings = _get_settings()
+	client = _get_xero_client(settings)
+	categories = client.get_tracking_categories()
+	return [
+		{
+			"tracking_category_id": c.get("TrackingCategoryID"),
+			"name": c.get("Name"),
+			"status": c.get("Status"),
+			"options": [
+				{"tracking_option_id": o.get("TrackingOptionID"), "name": o.get("Name")}
+				for o in (c.get("Options") or [])
+			],
+		}
+		for c in categories
+		if c.get("Status") == "ACTIVE"
+	]
+
+
+@frappe.whitelist()
 def enqueue_customers_to_xero() -> str:
     log_name = create_log(entity="Customers", direction="ERPNext → Xero")
     frappe.enqueue(
         "erpnext_xero_app.xero_integration.sync._run_customers_to_xero",
-        queue="long",
+        queue="default",
         log_name=log_name,
     )
     return log_name
@@ -111,7 +135,7 @@ def enqueue_customers_from_xero() -> str:
     log_name = create_log(entity="Customers", direction="Xero → ERPNext")
     frappe.enqueue(
         "erpnext_xero_app.xero_integration.sync._run_customers_from_xero",
-        queue="long",
+        queue="default",
         log_name=log_name,
     )
     return log_name
@@ -122,7 +146,7 @@ def enqueue_invoices_to_xero() -> str:
     log_name = create_log(entity="Invoices", direction="ERPNext → Xero")
     frappe.enqueue(
         "erpnext_xero_app.xero_integration.sync._run_invoices_to_xero",
-        queue="long",
+        queue="default",
         log_name=log_name,
     )
     return log_name
@@ -133,7 +157,7 @@ def enqueue_invoices_from_xero() -> str:
     log_name = create_log(entity="Invoices", direction="Xero → ERPNext")
     frappe.enqueue(
         "erpnext_xero_app.xero_integration.sync._run_invoices_from_xero",
-        queue="long",
+        queue="default",
         log_name=log_name,
     )
     return log_name
@@ -257,6 +281,11 @@ def _sales_invoice_to_xero_payload(settings, si_doc, xero_contact_id: str) -> Di
         "LineItems": [],
     }
 
+    # Job/project tracking: map Project to Xero tracking category so job appears in Xero
+    tracking = None
+    if getattr(si_doc, "project", None):
+        tracking = get_tracking_for_erpnext("Project", si_doc.project)
+
     for item in si_doc.items:
         line = {
             "Description": item.description or item.item_name or item.item_code,
@@ -266,6 +295,8 @@ def _sales_invoice_to_xero_payload(settings, si_doc, xero_contact_id: str) -> Di
         }
         if settings.xero_tax_type:
             line["TaxType"] = settings.xero_tax_type
+        if tracking:
+            line["Tracking"] = [tracking]
         payload["LineItems"].append(line)
 
     return payload

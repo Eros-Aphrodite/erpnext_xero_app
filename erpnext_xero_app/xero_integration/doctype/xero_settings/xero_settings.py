@@ -84,38 +84,48 @@ def test_connection() -> dict:
 def sync_customers_now() -> dict:
     """
     Trigger customer sync (ERPNext → Xero) from the ERPNext UI.
+    Runs synchronously so the user sees the result immediately.
     """
-    from erpnext_xero_app.xero_integration.sync import enqueue_customers_to_xero
+    from erpnext_xero_app.xero_integration.sync import create_log, _run_customers_to_xero
 
-    log_name = enqueue_customers_to_xero()
-    return {"ok": True, "message": f"Customer sync queued. Log: {log_name}", "log": log_name}
+    log_name = create_log(entity="Customers", direction="ERPNext → Xero")
+    _run_customers_to_xero(log_name=log_name)
+    return {"ok": True, "message": f"Customer sync completed. Log: {log_name}", "log": log_name}
 
 
 @frappe.whitelist()
 def sync_invoices_now() -> dict:
     """
     Trigger invoice sync (ERPNext → Xero) from the ERPNext UI.
+    Runs synchronously so the user sees the result immediately.
     """
-    from erpnext_xero_app.xero_integration.sync import enqueue_invoices_to_xero
+    from erpnext_xero_app.xero_integration.sync import create_log, _run_invoices_to_xero
 
-    log_name = enqueue_invoices_to_xero()
-    return {"ok": True, "message": f"Invoice sync queued. Log: {log_name}", "log": log_name}
+    log_name = create_log(entity="Invoices", direction="ERPNext → Xero")
+    _run_invoices_to_xero(log_name=log_name)
+    return {"ok": True, "message": f"Invoice sync completed. Log: {log_name}", "log": log_name}
 
 
 @frappe.whitelist()
 def sync_customers_from_xero_now() -> dict:
-    """Trigger customer sync (Xero → ERPNext)."""
-    from erpnext_xero_app.xero_integration.sync import enqueue_customers_from_xero
+    """Trigger customer sync (Xero → ERPNext).
+    Runs synchronously so the user sees the result immediately.
+    """
+    from erpnext_xero_app.xero_integration.sync import create_log, _run_customers_from_xero
 
-    log_name = enqueue_customers_from_xero()
-    return {"ok": True, "message": f"Customer import queued. Log: {log_name}", "log": log_name}
+    log_name = create_log(entity="Customers", direction="Xero → ERPNext")
+    _run_customers_from_xero(log_name=log_name)
+    return {"ok": True, "message": f"Customer import completed. Log: {log_name}", "log": log_name}
 
 
 @frappe.whitelist()
 def sync_invoices_from_xero_now() -> dict:
-    """Trigger invoice sync (Xero → ERPNext)."""
-    from erpnext_xero_app.xero_integration.sync import enqueue_invoices_from_xero
+    """Trigger invoice sync (Xero → ERPNext).
+    Runs synchronously so the user sees the result immediately.
+    """
+    from erpnext_xero_app.xero_integration.sync import create_log, _run_invoices_from_xero
 
-    log_name = enqueue_invoices_from_xero()
-    return {"ok": True, "message": f"Invoice import queued. Log: {log_name}", "log": log_name}
+    log_name = create_log(entity="Invoices", direction="Xero → ERPNext")
+    _run_invoices_from_xero(log_name=log_name)
+    return {"ok": True, "message": f"Invoice import completed. Log: {log_name}", "log": log_name}
 

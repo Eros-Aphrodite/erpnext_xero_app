@@ -1,0 +1,37 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "field:erpnext_doctype_and_name",
+  "creation": "2026-02-27 00:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "section_main",
+    "erpnext_doctype",
+    "erpnext_name",
+    "column_break",
+    "xero_tracking_category_id",
+    "xero_tracking_category_name",
+    "xero_tracking_option_id",
+    "xero_tracking_option_name",
+    "erpnext_doctype_and_name"
+  ],
+  "fields": [
+    {"fieldname": "section_main", "fieldtype": "Section Break", "label": "Mapping"},
+    {"fieldname": "erpnext_doctype", "fieldtype": "Select", "label": "ERPNext Type", "options": "Project\nCost Code", "reqd": 1},
+    {"fieldname": "erpnext_name", "fieldtype": "Data", "label": "ERPNext Project or Cost Code", "reqd": 1, "description": "Project name or Cost Code name."},
+    {"fieldname": "column_break", "fieldtype": "Column Break"},
+    {"fieldname": "xero_tracking_category_id", "fieldtype": "Data", "label": "Xero Tracking Category ID", "reqd": 1},
+    {"fieldname": "xero_tracking_category_name", "fieldtype": "Data", "label": "Xero Category Name", "read_only": 1},
+    {"fieldname": "xero_tracking_option_id", "fieldtype": "Data", "label": "Xero Tracking Option ID"},
+    {"fieldname": "xero_tracking_option_name", "fieldtype": "Data", "label": "Xero Option Name", "reqd": 1, "description": "Sent to Xero as OptionName on invoice lines."},
+    {"fieldname": "erpnext_doctype_and_name", "fieldtype": "Data", "label": "Key", "hidden": 1, "read_only": 1}
+  ],
+  "modified": "2026-02-27 00:00:00.000000",
+  "module": "Xero Integration",
+  "name": "Xero Tracking Mapping",
+  "owner": "Administrator",
+  "permissions": [{"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

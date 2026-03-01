@@ -1,108 +1,106 @@
 {
- "doctype": "DocType",
- "name": "Xero Sync Log",
- "module": "Xero Integration",
- "istable": 0,
- "custom": 0,
- "editable_grid": 0,
- "allow_rename": 0,
- "autoname": "naming_series:",
- "naming_series": "XERO-SYNC-.#####",
- "engine": "InnoDB",
- "sort_field": "creation",
- "sort_order": "DESC",
- "title_field": "status",
- "fields": [
-  {
-   "fieldname": "section_main",
-   "fieldtype": "Section Break",
-   "label": "Sync Run"
-  },
-  {
-   "fieldname": "entity",
-   "fieldtype": "Select",
-   "label": "Entity",
-   "options": "Customers\nInvoices",
-   "reqd": 1
-  },
-  {
-   "fieldname": "direction",
-   "fieldtype": "Select",
-   "label": "Direction",
-   "options": "ERPNext → Xero\nXero → ERPNext",
-   "reqd": 1
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Queued\nRunning\nSuccess\nFailed",
-   "reqd": 1,
-   "default": "Queued"
-  },
-  {
-   "fieldname": "started_at",
-   "fieldtype": "Datetime",
-   "label": "Started At",
-   "read_only": 1
-  },
-  {
-   "fieldname": "ended_at",
-   "fieldtype": "Datetime",
-   "label": "Ended At",
-   "read_only": 1
-  },
-  {
-   "fieldname": "records_processed",
-   "fieldtype": "Int",
-   "label": "Records Processed",
-   "read_only": 1,
-   "default": 0
-  },
-  {
-   "fieldname": "message",
-   "fieldtype": "Small Text",
-   "label": "Message",
-   "read_only": 1
-  },
-  {
-   "fieldname": "details",
-   "fieldtype": "Long Text",
-   "label": "Details",
-   "read_only": 1
-  },
-  {
-   "fieldname": "error",
-   "fieldtype": "Long Text",
-   "label": "Error",
-   "read_only": 1
-  }
- ],
- "field_order": [
-  "section_main",
-  "entity",
-  "direction",
-  "status",
-  "started_at",
-  "ended_at",
-  "records_processed",
-  "message",
-  "details",
-  "error"
- ],
- "permissions": [
-  {
-   "role": "System Manager",
-   "read": 1,
-   "write": 1,
-   "create": 1,
-   "delete": 1,
-   "report": 1,
-   "export": 1,
-   "print": 1,
-   "email": 1,
-   "share": 1
-  }
- ]
+"doctype": "DocType",
+"name": "Xero Sync Log",
+"module": "Xero Integration",
+"istable": 0,
+"custom": 0,
+"editable_grid": 0,
+"allow_rename": 0,
+"autoname": "hash",
+"engine": "InnoDB",
+"sort_field": "creation",
+"sort_order": "DESC",
+"title_field": "status",
+"fields": [
+{
+"fieldname": "section_main",
+"fieldtype": "Section Break",
+"label": "Sync Run"
+},
+{
+"fieldname": "entity",
+"fieldtype": "Select",
+"label": "Entity",
+"options": "Customers\nInvoices",
+"reqd": 1
+},
+{
+"fieldname": "direction",
+"fieldtype": "Select",
+"label": "Direction",
+"options": "ERPNext \u2192 Xero\nXero \u2192 ERPNext",
+"reqd": 1
+},
+{
+"fieldname": "status",
+"fieldtype": "Select",
+"label": "Status",
+"options": "Queued\nRunning\nSuccess\nFailed",
+"reqd": 1,
+"default": "Queued"
+},
+{
+"fieldname": "started_at",
+"fieldtype": "Datetime",
+"label": "Started At",
+"read_only": 1
+},
+{
+"fieldname": "ended_at",
+"fieldtype": "Datetime",
+"label": "Ended At",
+"read_only": 1
+},
+{
+"fieldname": "records_processed",
+"fieldtype": "Int",
+"label": "Records Processed",
+"read_only": 1,
+"default": 0
+},
+{
+"fieldname": "message",
+"fieldtype": "Small Text",
+"label": "Message",
+"read_only": 1
+},
+{
+"fieldname": "details",
+"fieldtype": "Long Text",
+"label": "Details",
+"read_only": 1
+},
+{
+"fieldname": "error",
+"fieldtype": "Long Text",
+"label": "Error",
+"read_only": 1
 }
-
+],
+"field_order": [
+"section_main",
+"entity",
+"direction",
+"status",
+"started_at",
+"ended_at",
+"records_processed",
+"message",
+"details",
+"error"
+],
+"permissions": [
+{
+"role": "System Manager",
+"read": 1,
+"write": 1,
+"create": 1,
+"delete": 1,
+"report": 1,
+"export": 1,
+"print": 1,
+"email": 1,
+"share": 1
+}
+]
+}
